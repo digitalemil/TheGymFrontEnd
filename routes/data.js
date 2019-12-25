@@ -3,7 +3,7 @@ let router = express.Router();
 global.hr= "---";
 global.lon= "---";
 global.lat= "---";
-var passwd= require('./passwd.json');
+var passwd= require('../passwd.json');
 obj[passwd.user]= passwd.password;console.log(obj);
 
 
