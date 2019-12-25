@@ -122,9 +122,10 @@ app.use('/app/*', authRequired);
 app.use('/', indexRouter);
 let obj= new Object();
 obj[passwd.user]= passwd.password;console.log(obj);
+/*
 app.use(basicAuth({
   users: obj
-}))
+}))*/
 app.use('/data', dataRouter);
 
 // catch 404 and forward to error handler
