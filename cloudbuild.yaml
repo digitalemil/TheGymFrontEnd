@@ -26,6 +26,6 @@ steps:
   - --location=global
   - --keyring=thegym-global-keyring
   - --key=thegym-global-key
-  - name: "gcr.io/cloud-builders/gcloud"
+- name: "gcr.io/cloud-builders/gcloud"
   args: ["app", "deploy"]
 timeout: "1600s"
