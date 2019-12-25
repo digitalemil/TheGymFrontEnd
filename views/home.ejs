@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+  </head>
+  <body>
+   
+    <h1><%= title %></h1>
+    <a href="/app/home"><img id="img" class="icon"/></a>
+   <div style="font-size: 20px;">
+    <p>
+      <a href="kurse">Anmeldungen</a>
+    </p>
+    <p>
+      <a href="aerzte">Ärzte</a>
+    </p>
+    <p>
+      <a href="arztsuchen">Ärzte suchen</a>
+    </p>
+    <!-- 
+    <p>
+      <a href="zahlung1">Zahlungseingang vermerken</a>    
+    </p>
+    <p>
+      <a href="unbezahlte1">Unbezahlte Anmeldungen</a>    
+    </p>
+    <p>
+      <a onclick="alert('Coming soon')" href="storno1">Anmeldung stornieren</a>    
+    </p>    
+    <p>
+      <a onclick="alert('Coming soon')" href="warteliste1">Warteliste bearbeiten</a>    
+    </p>  
+    -->  
+    <p>
+      <a href="registrieren1">Kurs-Teilnehmer Liste als PDF</a>    
+    </p>
+    <p>
+      <a href="teilnahme1">Teilnahme eintragen</a>    
+    </p>    
+    <p>
+      <a href="bestaetigung1">Teilnahmebestätigungen PDF</a>    
+    </p>    
+    <p>
+      <a href="users1">Benutzer verwalten</a>    
+    </p>    
+    <p>
+      <a href="/logout">Logout</a>    
+    </p>   
+  </div>
+  <script> 
+    function loadCSS() {     
+      console.log("Loading CSS");     
+      var head = document.getElementsByTagName('HEAD')[0];  
+      var link = document.createElement('link'); 
+      link.rel = 'stylesheet';      
+      link.type = 'text/css'; 
+      link.href = "../stylesheets/"+"<%= global.darkmode?'style-dark.css':'style.css' %>";  
+      head.appendChild(link);  
+     document.getElementById("img").src='<%= global.darkmode?"../images/logo-512-transparentbg-grey.png":"../images/logo-512-whitebg.png" %>'
+    };
+    loadCSS();
+</script>  
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<script> 
+    
+<h1><%= message %></h1>
+<h2><%= error.status %></h2>
+<a href="/"><img id="img"  class="icon"/></a>
+  
+<pre><%= error.stack %></pre>
+<script> 
+    function loadCSS() {     
+      console.log("Loading CSS");     
+      var head = document.getElementsByTagName('HEAD')[0];  
+      var link = document.createElement('link'); 
+      link.rel = 'stylesheet';      
+      link.type = 'text/css'; 
+      link.href = "../stylesheets/"+"<%= global.darkmode?'style-dark.css':'style.css' %>";  
+      head.appendChild(link);  
+     document.getElementById("img").src='<%= global.darkmode?"../images/logo-512-transparentbg-grey.png":"../images/logo-512-whitebg.png" %>'
+    };
+    loadCSS();
+</script>  

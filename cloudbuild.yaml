@@ -1,0 +1,22 @@
+steps:
+- name: gcr.io/cloud-builders/gcloud
+  args:
+  - kms
+  - decrypt
+  - --ciphertext-file=config.json.enc
+  - --plaintext-file=config.json
+  - --location=global
+  - --keyring=manuellemedizin-keyring
+  - --key=manuellemedizin-key
+- name: gcr.io/cloud-builders/gcloud
+  args:
+  - kms
+  - decrypt
+  - --ciphertext-file=app.yaml.enc
+  - --plaintext-file=app.yaml
+  - --location=global
+  - --keyring=manuellemedizin-keyring
+  - --key=manuellemedizin-key
+- name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy"]
+timeout: "1600s"
