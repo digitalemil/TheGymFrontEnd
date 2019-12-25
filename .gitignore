@@ -1,4 +1,5 @@
 app.yaml
 config.json
+passwd.json
 appengine-config.json
 local-config.json

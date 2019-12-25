@@ -11,6 +11,7 @@ let darkmode= true;
 
 var app = express();
 var config= require('./config.json');
+var passwd= require('./passwd.json');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
@@ -119,8 +120,10 @@ app.use(function(req, res, next) {
 app.use('/app', authRequired);
 app.use('/app/*', authRequired);
 app.use('/', indexRouter);
+let obj= new Object();
+obj[passwd.user]= passwd.password;console.log(obj);
 app.use(basicAuth({
-  users: { 'data': '17xpTl0ge7nTJDBKbdsa' }
+  users: obj
 }))
 app.use('/data', dataRouter);
 
