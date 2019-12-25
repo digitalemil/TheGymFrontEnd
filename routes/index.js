@@ -15,7 +15,7 @@ router.get('/app/home', function (req, res, next) {
 });
 
 /* GET Data */
-router.get('/app/data', function (req, res, next) {
+router.get('/data', function (req, res, next) {
   hr= req.query.hr;
   lon= req.query.lon;
   lat= req.query.lat;
