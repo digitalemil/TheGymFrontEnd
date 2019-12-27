@@ -26,13 +26,21 @@ router.get('/', function (req, res, next) {
 
 /* Fetch Data */
 router.get('/fetch', function (req, res, next) {
+    /*
     if(passwd.user!= req.query.user || passwd.password!= req.query.password) {
         res.write("Unauthorized");
         res.end();
         return;
     }
+    */
+    let ret= new Object();
+    ret.user= global.user;
+    ret.hr= global.hr;
+    ret.lon= global.lon;
+    ret.lat= global.lat;
 
-    res.write(global.user+","+global.hr+","+global.lon+","global.lat+"\n");
+    res.setHeader('Content-Type', 'application/json');
+    res.write(JSON.stringify(ret));
     res.end();
   //res.render('home', { title: 'The Gym', hr:hr, lon:lon, lat:lat });
 });
