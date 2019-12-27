@@ -4,6 +4,7 @@ global.hr= "---";
 global.lon= "---";
 global.lat= "---";
 global.user="---";
+global.id="---";
 
 var passwd= require('../passwd.json');
 
@@ -18,7 +19,7 @@ router.get('/', function (req, res, next) {
     global.lon= req.query.lon;
     global.lat= req.query.lat;
     global.user= req.query.user;  
-  
+    global.id= new Date().getTime();
     res.write("Thank you.\n");
   res.end();
   //res.render('home', { title: 'The Gym', hr:hr, lon:lon, lat:lat });
@@ -38,6 +39,7 @@ router.get('/fetch', function (req, res, next) {
     ret.hr= global.hr;
     ret.lon= global.lon;
     ret.lat= global.lat;
+    ret.id= global.id;
 
     res.setHeader('Content-Type', 'application/json');
     res.write(JSON.stringify(ret));
