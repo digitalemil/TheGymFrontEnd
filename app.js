@@ -10,7 +10,12 @@ let darkmode= true;
 
 
 var app = express();
-var config= require('./config.json');
+
+
+
+
+let config= JSON.parse(process.env.CONFIG);
+//let config= require('./config.json');
 var passwd= require('./passwd.json');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
@@ -77,7 +82,6 @@ app.use(session(sessionConfig));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -120,8 +124,28 @@ app.use(function(req, res, next) {
 app.use('/app', authRequired);
 app.use('/app/*', authRequired);
 app.use('/', indexRouter);
+app.use('/hr', indexRouter);
+
+
+// ToDo: Add Grafana Metrics
+const client = require('prom-client');
+const collectDefaultMetrics = client.collectDefaultMetrics;
+const Registry = client.Registry;
+const register = new Registry();
+collectDefaultMetrics({ register });
+app.get('/metrics', async (_req, res) => {
+  try {
+    res.set('Content-Type', register.contentType);
+    res.end(await register.metrics());  
+  } catch (err) {
+    res.status(500).end(err);
+  }
+});
+
+
+
 let obj= new Object();
-obj[passwd.user]= passwd.password;console.log(obj);
+obj[passwd.user]= passwd.password;
 /*
 app.use(basicAuth({
   users: obj
@@ -190,6 +214,17 @@ indexRouter.get(
     res.redirect(redirect);
   }
 );
+
+/*
+setTimeout(load, 5000);
+
+const axios = require('axios').default;
+function load() {
+  let hr= Math.round(174 -Math.random()*48);
+  axios.get('http://localhost:3000/data?user=data&password=adjhaADbdhY7nkjdasd7y72GUG7cFv6&lon=-0.118092&lat=51.509865&hr='+hr)
+  setTimeout(load, 1000);
+}
+*/
 
 
 module.exports = app;
