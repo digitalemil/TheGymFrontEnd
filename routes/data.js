@@ -23,6 +23,7 @@ router.all("hr"), function (req, res, next) {
   res.write(JSON.stringify(obj))
 }
 */
+
 router.all('/', function (req, res, next) {
     if(passwd.password!= req.query.password) {
         res.write("User "+req.user+" unauthorized.");
